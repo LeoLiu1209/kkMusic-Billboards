@@ -8,3 +8,8 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli)
      $ vue init webpack client
      $ cd client
      $ npm run dev 
+
+## Backend Installation
+Using express.js as a backend
+
+     $ npm install --save express body-parser nodeman cors
