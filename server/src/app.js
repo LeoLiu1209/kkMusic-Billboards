@@ -6,7 +6,7 @@ const app = express()
 app.use(bodyParse.json())
 app.use(cors())
 
-app.get('/status', (req, res)=>{
+app.get('/getHitPlayLists', (req, res)=>{
     res.send({
         message: 'hello world'
     })
