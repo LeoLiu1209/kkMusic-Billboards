@@ -1,10 +1,33 @@
 const express = require('express')
+const kkbox = require('../src/kkbox')
 const router = express.Router()
 
 router.get('/', function(req, res) {
-    res.send({
-        message : 'hello world'
+    let musicInfo={}
+    kkbox.getClientCredential().then(credential=>{
+       return credential.access_token
+    }).then(access_token => {
+        return kkbox.getNewHitsPlaylist(access_token)
+    }).then(getNewHitsPlaylist => {
+        let NewHitsPlaylistLength = getNewHitsPlaylist.summary.total
+        let randPlayListInfo = getNewHitsPlaylist.data[Math.floor(Math.random()*NewHitsPlaylistLength)]
+        return randPlayListInfo
+    }).then(randPlayListInfo => {
+        musicInfo = {
+            title : randPlayListInfo.title,
+            image : randPlayListInfo.images[0].url,
+            url : randPlayListInfo.url,
+            id : randPlayListInfo.id
+        }
+        console.log(musicInfo)
+        return kkbox.createWidget(randPlayListInfo)
+    }).then(widgetURL => {
+        console.log(widgetURL)
+        res.send({
+            message : musicInfo
+        })
     })
+    
 })
 
 module.exports = router
