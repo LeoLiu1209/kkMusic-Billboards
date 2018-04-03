@@ -1,5 +1,6 @@
 const express = require('express')
 const kkbox = require('../src/kkbox')
+const QRCode = require('../src/qrcode')
 const router = express.Router()
 
 router.get('/', function(req, res) {
@@ -19,12 +20,13 @@ router.get('/', function(req, res) {
             url : randPlayListInfo.url,
             id : randPlayListInfo.id
         }
-        console.log(musicInfo)
         return kkbox.createWidget(randPlayListInfo)
     }).then(widgetURL => {
-        console.log(widgetURL)
+        return QRCode.QRCodeDataURL(widgetURL)
+    }).then(dataURL => {
         res.send({
-            message : musicInfo
+            dataURL : dataURL,
+            message : musicInfo 
         })
     })
     
