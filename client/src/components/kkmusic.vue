@@ -1,6 +1,9 @@
 <template>
   <div>
-      <h1>{{backendMsg}}</h1>
+      <img v-bind:src="playlistImage" alt="">
+      <h1 class="title">KKMusic electrical billboards</h1>
+      <img v-bind:src="qrcode" alt="">
+      <a v-bind:href="playListURL"><h1>{{title}}</h1></a>
   </div>
 </template>
 
@@ -9,13 +12,19 @@ import kkFetcherServices from '@/services/kkFetcherServices'
 export default {
   data () {
     return {
-      backendMsg :''
+      title :'',
+      playListURL:'',
+      playlistImage:'',
+      qrcode:''
     }
   },
   methods: {
     getHitPlayLists: async function(){
       let response = await kkFetcherServices.getHitPlayLists()
-      this.backendMsg = response.data
+      this.title = response.data.message.title
+      this.playListURL = response.data.message.url
+      this.qrcode = response.data.dataURL
+      this.playlistImage = response.data.message.image
     }
   },
   mounted () {
