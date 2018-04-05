@@ -1,9 +1,18 @@
 <template>
   <div>
-      <img v-bind:src="playlistImage" alt="">
       <h1 class="title">KKMusic electrical billboards</h1>
       <img v-bind:src="qrcode" alt="">
-      <a v-bind:href="playListURL"><h1>{{title}}</h1></a>
+      <div class="row">
+          <div class="col-4">
+            <div class = "data">
+              <img v-bind:src="playlistImage" alt="">
+              <a v-bind:href="playListURL"><h1>{{title}}</h1></a>
+            </div>
+          </div>
+          <div class="col-8">
+            <b-table striped hover :items="songInfo"></b-table>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -15,7 +24,11 @@ export default {
       title :'',
       playListURL:'',
       playlistImage:'',
-      qrcode:''
+      qrcode:'',
+      songInfo:[
+        { id: 1, name: "Chandler Bing" },
+        { id: 2, name: "Ross Geller" },
+      ]
     }
   },
   methods: {
@@ -36,6 +49,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
+   color: #42b983;
   font-weight: normal;
 }
 ul {
