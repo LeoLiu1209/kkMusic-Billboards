@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="col-8">
-            <b-table striped hover :items="songInfo"></b-table>
+            <b-table striped hover :items="tracksInfo"></b-table>
           </div>
       </div>
   </div>
@@ -25,10 +25,7 @@ export default {
       playListURL:'',
       playlistImage:'',
       qrcode:'',
-      songInfo:[
-        { id: 1, name: "Chandler Bing" },
-        { id: 2, name: "Ross Geller" },
-      ]
+      tracksInfo:[]
     }
   },
   methods: {
@@ -38,6 +35,7 @@ export default {
       this.playListURL = response.data.message.url
       this.qrcode = response.data.dataURL
       this.playlistImage = response.data.message.image
+      this.tracksInfo = response.data.message.tracks
     }
   },
   mounted () {

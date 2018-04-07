@@ -6,7 +6,7 @@ const router = express.Router()
 router.get('/', function(req, res) {
     let musicInfo={}
     kkbox.getClientCredential().then(credential=>{
-       return credential.access_token
+        return credential.access_token
     }).then(access_token => {
         return kkbox.getNewHitsPlaylist(access_token)
     }).then(getNewHitsPlaylist => {
@@ -20,7 +20,10 @@ router.get('/', function(req, res) {
             url : randPlayListInfo.url,
             id : randPlayListInfo.id
         }
-        return kkbox.createWidget(randPlayListInfo)
+        return kkbox.getTracks(musicInfo.id);
+    }).then(tracks => {
+        musicInfo.tracks=tracks
+        return kkbox.createWidget(musicInfo)
     }).then(widgetURL => {
         return QRCode.QRCodeDataURL(widgetURL)
     }).then(dataURL => {
@@ -29,7 +32,6 @@ router.get('/', function(req, res) {
             message : musicInfo 
         })
     })
-    
 })
 
 module.exports = router
