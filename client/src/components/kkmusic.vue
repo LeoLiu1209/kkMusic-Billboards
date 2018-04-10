@@ -2,17 +2,19 @@
   <div>
       <h1 class="title">KKMusic electrical billboards</h1>
       <img v-bind:src="qrcode" alt="">
-      <div class="row">
-          <div class="col-4">
-            <div class = "data">
-              <img v-bind:src="playlistImage" alt="">
-              <a v-bind:href="playListURL"><h1>{{title}}</h1></a>
+      <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-md-4 col-lg-4">
+              <div class = "data">
+                 <b-img rounded="circle" v-bind:src="playlistImage" fluid alt="" />  
+                <a v-bind:href="playListURL"><h1>{{title}}</h1></a>
+              </div>
             </div>
-          </div>
-          <div class="col-8">
-            <b-table striped hover :items="tracksInfo"></b-table>
-          </div>
-      </div>
+            <div class="col-xs-8 col-md-8 col-lg-8">
+              <b-table responsive striped hover :items="tracksInfo"></b-table>
+            </div>
+        </div>
+      </div> 
   </div>
 </template>
 
