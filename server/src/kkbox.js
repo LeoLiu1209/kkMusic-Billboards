@@ -1,9 +1,12 @@
 const { Auth } = require('@kkbox/kkbox-js-sdk')
 const { Api } = require('@kkbox/kkbox-js-sdk')
-const auth = new Auth("YOUR CLIENT ID", "YOUR CLIENT SECRET")
+const {kkbox_sdk} = require('./client_secrets.json')
+const CLIENT_ID = kkbox_sdk.client_id
+const CLIENT_SECRET = kkbox_sdk.client_secret
 var api
 
 module.exports.getClientCredential = function () {
+    const auth = new Auth(CLIENT_ID,CLIENT_SECRET)
     return new Promise ((resolve, reject) => {
         auth.clientCredentialsFlow.fetchAccessToken().then(credential=>{
             resolve(credential.data)
