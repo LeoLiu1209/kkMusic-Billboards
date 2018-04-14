@@ -6,11 +6,12 @@
         <div class="row">
             <div class="col-xs-4 col-md-4 col-lg-4">
               <div class = "data">
+                 <a v-bind:href="playListURL"><h3>{{title}}</h3></a>
                  <b-img rounded="circle" v-bind:src="playlistImage" fluid alt="" />  
-                <a v-bind:href="playListURL"><h1>{{title}}</h1></a>
               </div>
             </div>
             <div class="col-xs-8 col-md-8 col-lg-8">
+              <h3>Tracks</h3>
               <b-table responsive striped hover :items="tracksInfo"></b-table>
             </div>
         </div>
@@ -48,7 +49,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1, h2, h3 {
    color: #42b983;
   font-weight: normal;
 }

@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParse = require('body-parser')
 const cors = require('cors')
-const kkFetcher = require('../routes/kkFetcher')
+const kkFetcher = require('./routes/kkFetcher')
 
 const app = express()
 app.use(bodyParse.json())
