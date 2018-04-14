@@ -39,6 +39,9 @@ export default {
       this.qrcode = response.data.dataURL
       this.playlistImage = response.data.message.image
       this.tracksInfo = response.data.message.tracks
+      setTimeout(() => {
+          this.getHitPlayLists()
+      }, 5000);
     }
   },
   mounted () {
